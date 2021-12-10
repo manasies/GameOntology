@@ -4,33 +4,33 @@
 	:id 0;
 	:username "Mana";
     :real_name "Matteo Bernardi";
-	:favorite_game "Black_Desert_Online";
-	:favorite_genre "Massively_multiplayer_online_role-playing_game" .
+	:favorite_game "Final_Fantasy_XIV";
+	:favorite_genre "" .
 
 :Zoe a :User;
 	:id 1;
 	:username "ZoeKiller420";
     :real_name "Zoe Lenglemetz";
 	:favorite_game "League_of_Legends";
-	:favorite_genre "Multiplayer_online_battle_arena" .
+	:favorite_genre "" .
 
 :Mathieu a :User;
 	:id 2;
 	:username "Zerglou";
     :real_name "Mathieu Hermann";
-	:favorite_game "Escape_from_Tarkov";
-	:favorite_genre "First-person_shooter" .
+	:favorite_game "Counter-Strike:_Global_Offensive";
+	:favorite_genre "" .
 
 :Victor a :User;
 	:id 3;
 	:username "Kilse";
     :real_name "Victor Cuvelier";
 	:favorite_game "Apex_Legends";
-	:favorite_genre "Battle_royale_game" .
+	:favorite_genre "" .
 
 :Thomas a :User;
 	:id 4;
 	:username "Raito";
     :real_name "Thomas Kissel";
 	:favorite_game "World_of_Warcraft";
-	:favorite_genre "Massively_multiplayer_online_role-playing_game" .
+	:favorite_genre "" .

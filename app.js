@@ -79,36 +79,66 @@ for (const user of users) {
   		dbpedia:${user.favorite_game} dbpedia-owl:releaseDate ?releaseDate .
 		}
 	`
-	client.query.select(query).then(rows => {
-		user.release_date = rows[0].releaseDate.value
+	client.query.select(query).then(res => {
+		user.release_date = res[0].releaseDate.value
 	}).catch(error => {
 		console.log(error)
         console.log(user)
 	})
 }
 
-// GETTING THE ABSTRACT FOR PREFERED GENRE
 for (const user of users) {
 	const query = `
 		PREFIX dbpedia: <http://dbpedia.org/resource/>		
 		PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>
 		
-		SELECT ?abstract
+		SELECT ?developer
 		WHERE {
-  		dbpedia:${user.favorite_genre} dbpedia-owl:abstract ?abstract .
-  		filter(langMatches(lang(?abstract),"en"))
+  		dbpedia:${user.favorite_game} dbpedia-owl:developer ?developer .
 		}
 	`
-	client.query.select(query).then(rows => {
-		user.genre_abstract = rows[0].abstract.value
+	client.query.select(query).then(res => {
+		user.game_dev = res[0].developer.value
 	}).catch(error => {
-		console.log(error)
+        console.log('CRASHING HERE')
         console.log(user)
 	})
 }
 
-console.log(users)
+const endpointUrl = 'https://query.wikidata.org/sparql'
 
+async function wikiDataReq() {
+    for (const user of users) {
+        const query2 = `
+        PREFIX bd: <http://www.bigdata.com/rdf#> 
+        PREFIX wd: <http://www.wikidata.org/entity/> 
+        PREFIX wdt: <http://www.wikidata.org/prop/direct/> 
+        PREFIX wikibase: <http://wikiba.se/ontology#> 
+        
+        select  ?objet ?objectLabel ?genreLabel
+        where {
+            ?object wdt:P31 wd:Q7889.
+            ?object wdt:P136 ?genre.
+            ?object rdfs:label "${user.favorite_game.replace(/_/g, ' ')}"@en. 
+            SERVICE wikibase:label {
+                bd:serviceParam wikibase:language "en" .
+            }
+        } Limit 1`
+        console.log(query2)
+        const client2 = new parser ({ endpointUrl })
+        const request2 = await client2.query.select(query2)
+
+        request2.forEach(resp => {
+            Object.entries(resp).forEach(([key, value]) => {
+                if (key == "genreLabel") {
+                    user.favorite_genre = value.value
+                }
+            })
+        })
+    }
+}
+
+wikiDataReq()
 
 
 const app = express()

@@ -2,9 +2,9 @@
     <h1>UserList</h1>
     <p>Select an User</p>
 
-    <ul class="list-group">
+    <ul class="list-group bg-dark">
         {{#each users}}
-        <li class="list-group-item"><a href="/user/{{id}}">{{real_name}} ({{username}})</a></li>
+        <li class="list-group-item bg-dark"><a href="/user/{{id}}">{{real_name}} ({{username}})</a></li>
         {{/each}}
     </ul>
 </div>
