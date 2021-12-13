@@ -69,6 +69,7 @@ for (const user of users) {
 	})
 }
 
+//GETTING THE RELEASE DATE OF THE USERS FAVORITE GAME
 for (const user of users) {
 	const query = `
 		PREFIX dbpedia: <http://dbpedia.org/resource/>		
@@ -87,6 +88,7 @@ for (const user of users) {
 	})
 }
 
+//GETTING THE DEVELOPER OF THE USERS FAVORITE GAME
 for (const user of users) {
 	const query = `
 		PREFIX dbpedia: <http://dbpedia.org/resource/>		
@@ -107,6 +109,7 @@ for (const user of users) {
 
 const endpointUrl = 'https://query.wikidata.org/sparql'
 
+//GETTING THE PREFERED GENRE OF THE USER BASED ON HIS FAVORITE GAME
 async function wikiDataReq() {
     for (const user of users) {
         const query2 = `

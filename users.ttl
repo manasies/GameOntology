@@ -9,7 +9,7 @@
 
 :Zoe a :User;
 	:id 1;
-	:username "ZoeKiller420";
+	:username "xXDragonSlayerXx";
     :real_name "Zoe Lenglemetz";
 	:favorite_game "League_of_Legends";
 	:favorite_genre "" .
